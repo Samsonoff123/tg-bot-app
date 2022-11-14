@@ -45,7 +45,7 @@ export default function Form() {
     }, [country, street])
 
   return (
-    <form className={styles.form}>
+    <div className={styles.form}>
         <h3>Введите ваши данные</h3>
         <input onChange={(e) => {setName(e.target.value)}} className={styles.input} type="text" placeholder={'Имя'} />
         <input onChange={(e) => {setLastName(e.target.value)}} className={styles.input} type="text" placeholder={'Фамилия'} />
@@ -55,6 +55,6 @@ export default function Form() {
             <option value={'physical'}>Физ. лицо</option>
             <option value={'legal'}>Юр. лицо</option>
         </select>
-    </form>
+    </div>
   )
 }
