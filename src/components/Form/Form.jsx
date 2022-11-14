@@ -8,7 +8,7 @@ export default function Form() {
     const [lastName, setLastName] = useState('')
     const [country, setCountry] = useState('')
     const [street, setStreet] = useState('')
-    const [subject, setSubject] = useState('')
+    const [subject, setSubject] = useState('physical')
     const { tg } = useTelegram()
 
     const onSendData = useCallback(() => {
@@ -37,7 +37,7 @@ export default function Form() {
     }, [])
 
     useEffect(() => {
-        if(!street || country) {
+        if(!street || !country) {
             tg.MainButton.hide()
         } else {
             tg.MainButton.show()
@@ -47,11 +47,31 @@ export default function Form() {
   return (
     <div className={styles.form}>
         <h3>Введите ваши данные</h3>
-        <input onChange={(e) => {setName(e.target.value)}} className={styles.input} type="text" placeholder={'Имя'} />
-        <input onChange={(e) => {setLastName(e.target.value)}} className={styles.input} type="text" placeholder={'Фамилия'} />
-        <input onChange={(e) => {setCountry(e.target.value)}} className={styles.input} type="text" placeholder={'Страна'} />
-        <input onChange={(e) => {setStreet(e.target.value)}} className={styles.input} type="text" placeholder={'Улица'} />
-        <select onChange={(e) => {setSubject(e.target.value)}} className={styles.select}>
+        <input
+            onChange={(e) => {setName(e.target.value)}} 
+            value={name} 
+            className={styles.input} 
+            type="text" 
+            placeholder={'Имя'} />
+        <input
+            onChange={(e) => {setLastName(e.target.value)}} 
+            value={lastName} 
+            className={styles.input} 
+            type="text" 
+            placeholder={'Фамилия'} />
+        <input
+            onChange={(e) => {setCountry(e.target.value)}} 
+            value={country} 
+            className={styles.input} 
+            type="text" 
+            placeholder={'Страна'} />
+        <input
+            onChange={(e) => {setStreet(e.target.value)}} 
+            value={street} 
+            className={styles.input} 
+            type="text" 
+            placeholder={'Улица'} />
+        <select onChange={(e) => {setSubject(e.target.value)}} value={subject} className={styles.select}>
             <option value={'physical'}>Физ. лицо</option>
             <option value={'legal'}>Юр. лицо</option>
         </select>
