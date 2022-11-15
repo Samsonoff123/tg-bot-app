@@ -5,8 +5,7 @@
     align-items: center;
     border: 1px solid var(--tg-theme-button-color);
     padding: 15px;
-    max-width: 350px;
-    width: 100%;
+    width: calc(100% / 2 - 10px);
     border-radius: 10px;
     background-color: var(--tg-theme-bg-color);
     border: 1px solid gray;
@@ -16,10 +15,9 @@
 
 .img {
     width: 100%;
-    background: lightgray;
     height: 200px;
     margin: 0 auto;
-    background: var(--tg-theme-button-color);
+    background: transparent;
 }
 
 .img img {
