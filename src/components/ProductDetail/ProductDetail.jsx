@@ -20,24 +20,18 @@ export default function ProductDetail() {
     useEffect(()=>{
         data ? document.getElementById('html').innerHTML = data.html : null
     }, [data])
-  return (
-    <>
-    {
-        data ? 
-            <div className={style.product__detail}>
-                <div className={style.image}>
-                    <img src={`https://tg-backend-database.herokuapp.com/${data.img}`} />
-                </div>
-                <div className={style.discription}>
-                    <h1>{data.name}</h1>
-                    <div className={style.price}>Цена: {data.price}</div>
-                    <Button style={{margin: '0.5em 0'}}>Купить</Button>
-                    <div id="html">
-                    </div>
-                </div>
-            </div>
-        : null
-    }
-    </>
-  )
+  return data ? 
+  <div className={style.product__detail}>
+      <div className={style.image}>
+          <img src={`https://tg-backend-database.herokuapp.com/${data.img}`} />
+      </div>
+      <div className={style.discription}>
+          <h1>{data.name}</h1>
+          <div className={style.price}>Цена: {data.price}</div>
+          <Button style={{margin: '0.5em 0'}}>Купить</Button>
+          <div id="html">
+          </div>
+      </div>
+  </div>
+: null
 }
