@@ -5,6 +5,7 @@
     padding: 10px;
     background-color:  var(--tg-theme-text-color);
     color: var(--tg-theme-bg-color);
+    border-bottom: 1px solid var(--tg-theme-bg-color);
 }
 
 .element {
@@ -15,6 +16,10 @@
 }
 
 .element a {
+    color: var(--tg-theme-text-color)
+}
+
+.element a:hover {
     color: var(--tg-theme-text-color)
 }
 
