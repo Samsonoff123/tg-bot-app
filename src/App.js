@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import Button from './components/Button/Button.jsx'
+import './components/ipad.css'
 import Header from './components/Header/Header.jsx'
 import { useTelegram } from './hooks/useTelegram';
 import { Route, Routes } from 'react-router-dom'

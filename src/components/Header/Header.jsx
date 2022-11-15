@@ -14,10 +14,6 @@ export default function Header({type}) {
                 <div key={e.id} className={styles.element}><Link to={`/${e.name}`}>{e.name}</Link></div>
             )
         }
-
-        <span className={styles.username}>
-            {user?.username}
-        </span>
     </div>
   )
 }

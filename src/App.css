@@ -8,3 +8,22 @@ body {
   background-color: var(--tg-theme-bg-color) !important;
   color: var(--tg-theme-text-color);
 }
+
+#html .grid-column {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#html .row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(50% - 10px);
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+#html .column.dd-display-size {
+  font-size: 17px;
+  font-weight: bold;
+}

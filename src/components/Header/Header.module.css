@@ -22,8 +22,3 @@
 .element a:hover {
     color: var(--tg-theme-text-color)
 }
-
-
-.username {
-    margin-left: auto;
-}

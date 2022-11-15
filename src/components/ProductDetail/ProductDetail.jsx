@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios';
 import Container from '../Container/Container';
 import style from './ProductDetail.module.css'
+import Button from '../Button/Button';
 
 export default function ProductDetail() {
     const {id} = useParams()
@@ -14,21 +15,27 @@ export default function ProductDetail() {
             setData(res.data);
             console.log(res.data);
         })
+        
     },[])
+    useEffect(()=>{
+        data ? document.getElementById('html').innerHTML = data.html : null
+    }, [data])
   return (
     <>
     {
         data ? 
-            <Container>
-                <div className={style.product__detail}>
-                    <div className={style.image}>
-                        <img src={`https://tg-backend-database.herokuapp.com/${data.img}`} />
-                    </div>
-                    <div className={style.discription}>
-
+            <div className={style.product__detail}>
+                <div className={style.image}>
+                    <img src={`https://tg-backend-database.herokuapp.com/${data.img}`} />
+                </div>
+                <div className={style.discription}>
+                    <h1>{data.name}</h1>
+                    <div>Цена: {data.price}</div>
+                    <Button>Купить</Button>
+                    <div id="html">
                     </div>
                 </div>
-            </Container>
+            </div>
         : null
     }
     </>
