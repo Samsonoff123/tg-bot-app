@@ -11,7 +11,7 @@
     background-color: var(--tg-theme-bg-color);
     border: 1px solid gray;
     cursor: pointer;
-    color: #000;
+    color: var(--tg-theme-text-color);
 }
 
 .img {
