@@ -30,8 +30,8 @@ export default function ProductDetail() {
                 </div>
                 <div className={style.discription}>
                     <h1>{data.name}</h1>
-                    <div>Цена: {data.price}</div>
-                    <Button>Купить</Button>
+                    <div className={style.price}>Цена: {data.price}</div>
+                    <Button style={{margin: '0.5em 0'}}>Купить</Button>
                     <div id="html">
                     </div>
                 </div>
