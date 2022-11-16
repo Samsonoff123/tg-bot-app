@@ -30,11 +30,31 @@ body {
 }
 
 #html .device {
-  display: none;
+  width: 100%;
+}
+
+#html .device a {
+  pointer-events: none;
 }
 
 .info {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+#html .dd-compare-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+#html .dd-compare-image img:nth-child(2) {
+  object-fit: contain;
+  height: 13px;
+}
+
+#html .dd-compare-grid .device {
+  text-align: center;
 }
