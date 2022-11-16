@@ -26,8 +26,8 @@ export default function ProductDetail() {
         data ? document.querySelector('input[name=memory]').checked = true : null
     }, [data])
 
-
     const sendData = (e) => {
+        console.log(tg);
         e.preventDefault()
         const device = {
             name: data.name,
@@ -35,6 +35,7 @@ export default function ProductDetail() {
             color: color,
             memory: memory
         }
+
         tg.sendData(JSON.stringify(device))
     }
 
