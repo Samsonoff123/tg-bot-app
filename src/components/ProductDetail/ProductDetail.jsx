@@ -53,7 +53,7 @@ export default function ProductDetail() {
             </div>
           </div>
           
-          <Button style={{margin: '0.5em 0'}}>Купить</Button>
+          <Button style={{display: 'flex', margin: '20px 0', marginLeft: 'auto'}}>Купить</Button>
           <div id="html">
           </div>
       </div>
