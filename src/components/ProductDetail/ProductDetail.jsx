@@ -31,7 +31,28 @@ export default function ProductDetail() {
       </div>
       <div className={style.discription}>
           <h1>{data.name}</h1>
-          <div className={style.price}>Цена: {data.price}</div>
+          <h2 className={style.price}>Цена: {data.price} KZT</h2>
+          <div className={style.props}>
+            <h3>Color:</h3>
+            <div className={style.variations}>
+                {JSON.parse(data.variations).color.map(e => 
+                    <div className={style.color} style={{background: e}}>
+                        <input name='color' id={e} type="radio" />
+                        <label for={e}></label>
+                    </div>    
+                )}
+            </div>
+            <h3>Memory:</h3>
+            <div className={style.variations}>
+                {JSON.parse(data.variations).memory.map(e => 
+                    <div className={style.memory}>
+                        <input name='memory' id={e} type="radio" />
+                        <label for={e}>{e}</label>
+                    </div>   
+                )}
+            </div>
+          </div>
+          
           <Button style={{margin: '0.5em 0'}}>Купить</Button>
           <div id="html">
           </div>

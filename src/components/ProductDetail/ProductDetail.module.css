@@ -15,3 +15,57 @@
     border-radius: 0 0 10px 10px;
     padding: 10px;
 }
+
+.variations {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.variations .color input {
+    display: none;
+}
+
+.variations .color input:checked + label {
+    border: 1px solid #777777;
+}
+
+.variations .color label {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.variations .color {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+}
+
+.props {
+    background: #dddddd;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.variations .memory label {
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.variations .memory input {
+    display: none;
+}
+
+.variations .memory input:checked + label {
+    border: 1px solid #777777;
+}
+
+.props h3 {
+    margin-bottom: 15px;
+}
+
+.props .variations {
+    margin-bottom: 15px;
+}
