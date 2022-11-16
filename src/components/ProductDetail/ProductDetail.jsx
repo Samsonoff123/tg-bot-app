@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios';
-import Container from '../Container/Container';
+import { Carousel } from 'antd';
 import style from './ProductDetail.module.css'
 import Button from '../Button/Button';
 
@@ -23,7 +23,11 @@ export default function ProductDetail() {
   return data ? 
   <div className={style.product__detail}>
       <div className={style.image}>
-          <img src={`https://tg-backend-database.herokuapp.com/${data.img}`} />
+      <Carousel>
+        {JSON.parse(data.sliderImg).map(slide =>
+            <img src={slide} />
+        )}  
+        </Carousel>
       </div>
       <div className={style.discription}>
           <h1>{data.name}</h1>
