@@ -27,7 +27,8 @@ export default function ProductDetail() {
     }, [data])
 
 
-    const sendData = () => {
+    const sendData = (e) => {
+        e.preventDefault()
         const device = {
             name: data.name,
             price: data.price,
@@ -70,7 +71,7 @@ export default function ProductDetail() {
             </div>
           </div>
           
-          <Button onClick={sendData} style={{display: 'flex', margin: '20px 0', marginLeft: 'auto'}}>Купить</Button>
+          <Button onClick={(e)=>sendData(e)} style={{display: 'flex', margin: '20px 0', marginLeft: 'auto'}}>Купить</Button>
           <h1>Which {data.name.split(' ')[0]} is right for you?</h1>
           <div id="html">
           </div>
