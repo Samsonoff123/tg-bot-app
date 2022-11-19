@@ -1,0 +1,16 @@
+.main {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+}
+
+.item input {
+    padding-left: 10px;
+}

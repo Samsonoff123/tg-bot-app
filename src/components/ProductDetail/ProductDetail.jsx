@@ -17,6 +17,7 @@ export default function ProductDetail() {
         axios.get(`https://tg-backend-database.herokuapp.com/api/device/${id}`)
         .then(res => {
             setData(res.data);
+            console.log(JSON.parse(res.data.sliderImg));
         })
         
     },[])

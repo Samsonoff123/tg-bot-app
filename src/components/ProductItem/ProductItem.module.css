@@ -1,4 +1,5 @@
 .product {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,4 +33,18 @@
 
 .add-btn {
     width: 100%;
+}
+
+.remove {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 99;
+    width: 20px;
+    height: 20px;
+}
+
+.remove svg {
+    width: 100%;
+    height: 100%;
 }
