@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import axios from 'axios';
-import { Carousel, Tabs } from 'antd';
+import { Tabs } from 'antd';
 import style from './ProductDetail.module.css'
 import Button from '../Button/Button';
 import { useTelegram } from '../../hooks/useTelegram';
@@ -59,7 +59,7 @@ export default function ProductDetail() {
       </div>
       <form className={style.discription}>
         <h1>{data.name}</h1>
-        <h2 className={style.price}>Цена: {data.price} KZT</h2>
+        <h2 className={style.price}>Цена: {data.price} руб.</h2>
 
         <div className={style.props}>
           <table>
@@ -98,7 +98,8 @@ export default function ProductDetail() {
         <h2>Похожие товары</h2>
 
         <Swiper
-          spaceBetween={20}
+          style={{padding: '20px 0'}}
+          spaceBetween={10}
           slidesPerView={2}
         >
           {similarDevices?.map((device) => (
@@ -109,11 +110,12 @@ export default function ProductDetail() {
             </SwiperSlide>
           ))}
         </Swiper>
-            <br />
+
         <h2>Рекомендуемые товары</h2>
 
         <Swiper
-          spaceBetween={20}
+          style={{padding: '20px 0'}}
+          spaceBetween={10}
           slidesPerView={2}
         >
           {typeDevices?.map((device) => (

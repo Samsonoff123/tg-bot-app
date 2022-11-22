@@ -46,3 +46,18 @@
     width: 100%;
     height: 100%;
 }
+
+.title {
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
+    height: 70px;
+    max-height: 70px;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.price {
+    width: 100%;
+    text-align: left;
+}

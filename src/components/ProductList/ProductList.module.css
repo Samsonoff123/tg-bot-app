@@ -3,7 +3,7 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     margin-top: 20px;
-    gap: 20px;
+    gap: 10px;
     padding-bottom: 20px;
 }
 
@@ -33,4 +33,30 @@
 
 .add-btn {
     width: 100%;
+}
+
+.sc__item {
+    width: calc(50% - 10px);
+}
+
+.sc__image {
+    height: 170px;
+    width: 100%;
+}
+
+.sc__image div {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.sc__descrip {
+    margin-top: 10px;
+}
+
+.sc__descrip ul {
+    margin-top: 10px !important;
+}
+
+.sc__descrip ul li + li {
+    margin-top: 10px !important;
 }

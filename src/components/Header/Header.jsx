@@ -3,6 +3,7 @@ import { useTelegram } from '../../hooks/useTelegram'
 import styles from './Header.module.css'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import axios from 'axios'
+import { Skeleton } from 'antd'
 
 
 export default function Header({typeId}) {
@@ -25,6 +26,18 @@ export default function Header({typeId}) {
     useEffect(() => {
       console.log(url);
     })
+
+    if (!type) {
+      return (
+        <div className={styles.header}>
+          {
+            [...Array(3)].map(e => 
+              <Skeleton.Button active={true} />
+            )
+          }
+        </div>
+      )
+    }
 
   return (
     <div className={styles.header}>

@@ -1,3 +1,4 @@
+import { Skeleton } from 'antd'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
@@ -18,7 +19,21 @@ export default function ProductList({isAuth}) {
     })
   }, [type])
   if (!device) {
-    return 'loading'
+    return (
+      <>
+        <Header typeId={type} />
+        <div className={styles.list}>
+        {
+          [...Array(4)].map(e => 
+            <div className={styles.sc__item}>
+              <Skeleton.Image className={styles.sc__image} active={true} />
+              <Skeleton className={styles.sc__descrip} />
+            </div>
+          )
+        }
+        </div>
+      </>
+    )
   }
 
   return (
