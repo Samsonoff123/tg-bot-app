@@ -25,7 +25,7 @@ export default function ProductItem({element, isAuth}) {
             'Authorization': `Bearer ${localStorage.getItem("token")}`
         }
     }).then((res) => {
-      ref.current.removeChild(ref.current.children[0])
+      ref.current.remove()
     }).catch((e) => {
         alert('Не успешно!')
     })

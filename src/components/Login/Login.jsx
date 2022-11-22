@@ -11,8 +11,7 @@ export default function Login() {
     const [token, setToken] = useState()
     const navigate = useNavigate()
 
-    const submitData = async (e) => {
-        e.preventDefault()
+    const submitData = async (event) => {
         axios.post(`https://tg-backend-database.herokuapp.com/api/user/login`, {
             "email": login,
             "password": password,
@@ -25,6 +24,7 @@ export default function Login() {
             }  
         })
         .catch((e) => {
+            event.preventDefault()
             setError(e.response.data.message);
         })
 

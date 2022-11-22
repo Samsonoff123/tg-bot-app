@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import style from './Admin.module.css'
 import { UploadOutlined } from '@ant-design/icons';
 import { storage } from '../../firebase-config'; 
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
 import { v4 } from 'uuid'
 import axios from 'axios';
 
@@ -41,22 +41,24 @@ export default function Admin() {
             .then(() => {
                 getDownloadURL(imageRef).then((res)=>{
                     setImage(res);
-                    uploadMultipleImages()
+                    uploadMultipleImages(imageRef)
                 })
             })
         }
     }
 
-    const uploadMultipleImages = () => {
+    const uploadMultipleImages = (imageRef) => {
+        const arrayRef = []
         if (imageMultiple) {
             for(let i = 0; i < imageMultiple.length; i++) {
-                const imageRef = ref(storage, `images/${ v4() + imageMultiple[i].name }`)
-                uploadBytes(imageRef, imageMultiple[i])
+                const imageRefMultiple = ref(storage, `images/${ v4() + imageMultiple[i].name }`)
+                uploadBytes(imageRefMultiple, imageMultiple[i])
                 .then(() => {
-                    getDownloadURL(imageRef).then((res)=>{
+                    getDownloadURL(imageRefMultiple).then((res)=>{
                         sliderImg.push(res);
+                        arrayRef.push(imageRefMultiple)
                         if (i === imageMultiple.length-1) {
-                            sendOtherData()
+                            sendOtherData(imageRef, arrayRef)
                         }
                     })
                 })
@@ -64,14 +66,14 @@ export default function Admin() {
         }
     }
 
-    const sendOtherData = () => {
+    const sendOtherData = (imageRef, arrayRef) => {
         const deviceData = {
             "name": deviceName,
             "price": +price,
             "brandId": +brandId,
             "typeId": +typeId,
             "img": image,
-            "html": html,
+            "html": html + '<div style="display: none" data-ref = "' + imageRef + '" data-array-ref = "' + arrayRef + '"></div>',
             "variations": variations,
             "sliderImg": JSON.stringify(sliderImg),
         }
@@ -82,11 +84,25 @@ export default function Admin() {
                 'Authorization': `Bearer ${localStorage.getItem("token")}`
             }
         }).then((res) => {
+
             alert('Добавлено!')
         }).catch((e) => {
             console.log(e);
             alert('Не добавлено!')
+            console.log("запрос выдал ошибку");    
+            deleteObject(imageRef).then(() => {
+                console.log("картинки удалены успешно");    
+            })
+
+            removeFirebaseImages(arrayRef)
+
         })
+    }
+
+    const removeFirebaseImages = (arrayRef) => {
+        for(let i = 0; i < imageMultiple.length; i++) {
+            deleteObject(arrayRef[i])
+        }
     }
 
     const sendType = (e) => {
