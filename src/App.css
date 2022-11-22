@@ -5,12 +5,16 @@
 }
 
 body {
-  background-color: var(--tg-theme-bg-color) !important;
-  color: var(--tg-theme-text-color);
+  background-color: #f8f8f8 !important;
 }
 
 .info {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+a {
+  color: #000 !important;
+
 }

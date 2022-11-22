@@ -4,14 +4,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid var(--tg-theme-button-color);
     padding: 15px;
     width: 100%;
     border-radius: 10px;
-    background-color: var(--tg-theme-text-color);
-    border: 1px solid gray;
+    background-color: #fff;
     cursor: pointer;
-    color: var(--tg-theme-bg-color);
+    box-shadow: 0px 0px 10px 2px rgb(34 60 80 / 14%);
 }
 
 .img {

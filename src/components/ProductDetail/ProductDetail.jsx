@@ -8,6 +8,7 @@ import { useTelegram } from '../../hooks/useTelegram';
 import ProductItem from '../ProductItem/ProductItem';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import Header from '../Header/Header';
 
 export default function ProductDetail() {
     const {id} = useParams()
@@ -42,6 +43,8 @@ export default function ProductDetail() {
     }
 
   return data ? (
+    <>
+    <Header typeId={data.typeId} />
     <div className={style.product__detail}>
       <div className={style.image}>
       <Swiper
@@ -136,5 +139,6 @@ export default function ProductDetail() {
         </div>
       </form>
     </div>
+    </>
   ) : null;
 }

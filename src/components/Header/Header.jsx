@@ -1,24 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import { useTelegram } from '../../hooks/useTelegram'
 import styles from './Header.module.css'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
+import axios from 'axios'
 
 
-export default function Header({type}) {
-
+export default function Header({typeId}) {
+    const [type, setType] = useState() 
     const { user, onClose} = useTelegram()
     const [isAuth, setIsAuth] = useState()
+    const [url, setUrl] = useState(window.location.href)
     
     useEffect(() => {
+      axios.get(`https://tg-backend-database.herokuapp.com/api/type`)
+      .then(res => {
+        setType(res.data);
+      })
+
       if (localStorage.getItem("token")) {
         setIsAuth(localStorage.getItem("token"))
       }
     }, [])
+
+    useEffect(() => {
+      console.log(url);
+    })
+
   return (
     <div className={styles.header}>
         {
-            type.map(e => 
-                <div key={e.id} className={styles.element}><Link to={`/${e.name}`}>{e.name}</Link></div>
+            type?.map(e => 
+                <div key={e.id} className={`${e.id == typeId ? styles.element__active : styles.element}`}><Link to={`/${e.id}`}>{e.name}</Link></div>
             )
         }
         {
