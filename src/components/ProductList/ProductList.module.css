@@ -36,7 +36,7 @@
 }
 
 .sc__item {
-    width: calc(50% - 10px);
+    width: calc(50% - 5px);
 }
 
 .sc__image {

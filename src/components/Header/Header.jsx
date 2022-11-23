@@ -31,8 +31,8 @@ export default function Header({typeId}) {
       return (
         <div className={styles.header}>
           {
-            [...Array(3)].map(e => 
-              <Skeleton.Button active={true} />
+            [...Array(3)].map((e, id) => 
+              <Skeleton.Button key={id} active={true} />
             )
           }
         </div>
