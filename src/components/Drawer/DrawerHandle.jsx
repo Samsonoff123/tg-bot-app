@@ -13,15 +13,16 @@ export default function DrawerHandle({open, onClose, info}) {
 
   const sendData = (e) => {
     e.preventDefault()
-    // const device = {
-    //     name: info.name,
-    //     price: info.price,
-    //     memory: info.memory,
-    //     delivery: inputValue,
-    // }
-    // tg.sendData(JSON.stringify(device))
-    console.log(inputValue);
+    const device = {
+        name: info.name,
+        price: info.price,
+        memory: info.memory,
+        delivery: inputValue,
+    }
+    tg.sendData(JSON.stringify(device))
 }
+
+
 
   return (
     <Drawer
@@ -47,9 +48,8 @@ export default function DrawerHandle({open, onClose, info}) {
           id={1} 
           value="Самовывоз"
           type="radio"
-          onInput={e => setInputValue(e.target.value)} 
           />
-          <label for={1} className={style.element}>
+          <label for={1} className={style.element} onClick={e => setInputValue("Самовывоз")}>
             <img src={pickup} />
             <div className={style.description}>
                 <h3>Самовывоз</h3>
@@ -64,9 +64,8 @@ export default function DrawerHandle({open, onClose, info}) {
           id={2} 
           value="Доставка курьером"
           type="radio" 
-          onInput={e => setInputValue(e.target.value)} 
           />
-          <label for={2} className={style.element}>
+          <label for={2} className={style.element} onClick={e => setInputValue("Доставка курьером")}>
             <img src={delivery} />
             <div className={style.description}>
                 <h3>Доставка курьером</h3>
