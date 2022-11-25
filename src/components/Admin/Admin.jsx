@@ -77,7 +77,7 @@ export default function Admin() {
             "variations": variations,
             "sliderImg": JSON.stringify(sliderImg),
         }
-        axios.post('https://tg-backend-database.herokuapp.com/api/device', deviceData, 
+        axios.post(process.env.REACT_APP_BACKEND_URL + '/api/device', deviceData, 
         {
             headers: {
                 'Content-Type': 'application/json',
@@ -107,7 +107,7 @@ export default function Admin() {
 
     const sendType = (e) => {
         e.preventDefault()
-        axios.post('https://tg-backend-database.herokuapp.com/api/type', { 
+        axios.post(process.env.REACT_APP_BACKEND_URL + '/api/type', { 
             "name": typeName,
         }, {
             headers: {
@@ -123,7 +123,7 @@ export default function Admin() {
 
     const sendBrand = (e) => {
         e.preventDefault()
-        axios.post('https://tg-backend-database.herokuapp.com/api/brand', { 
+        axios.post(process.env.REACT_APP_BACKEND_URL + '/api/brand', { 
             "name": brandName,
         }, {
             headers: {

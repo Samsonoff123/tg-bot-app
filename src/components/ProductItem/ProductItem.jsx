@@ -18,7 +18,7 @@ export default function ProductItem({element, isAuth}) {
 
   const removeReq = (deviceId) => {
 
-    axios.delete(`https://tg-backend-database.herokuapp.com/api/device/${deviceId}`, 
+    axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/device/${deviceId}`, 
     {
         headers: {
             'Content-Type': 'application/json',

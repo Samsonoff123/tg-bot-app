@@ -19,7 +19,7 @@ export default function ProductDetail() {
     const [memory, setMemory] = useState()
 
     useEffect(()=>{
-        axios.get(`https://tg-backend-database.herokuapp.com/api/device/${id}`)
+        axios.get(process.env.REACT_APP_BACKEND_URL + `/api/device/${id}`)
         .then(res => {
             setData(res.data.device);
             setSimilarDevices(res.data.similarDevices)

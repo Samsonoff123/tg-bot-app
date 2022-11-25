@@ -13,7 +13,7 @@ export default function Header({typeId}) {
     const [url, setUrl] = useState(window.location.href)
     
     useEffect(() => {
-      axios.get(`https://tg-backend-database.herokuapp.com/api/type`)
+      axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/type`)
       .then(res => {
         setType(res.data);
       })

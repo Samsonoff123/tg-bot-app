@@ -12,7 +12,7 @@ export default function Login() {
     const navigate = useNavigate()
 
     const submitData = async (event) => {
-        axios.post(`https://tg-backend-database.herokuapp.com/api/user/login`, {
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/user/login`, {
             "email": login,
             "password": password,
         })
