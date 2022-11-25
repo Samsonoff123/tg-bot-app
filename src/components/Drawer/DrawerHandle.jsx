@@ -13,13 +13,14 @@ export default function DrawerHandle({open, onClose, info}) {
 
   const sendData = (e) => {
     e.preventDefault()
-    const device = {
-        name: info.name,
-        price: info.price,
-        memory: info.memory,
-        delivery: inputValue,
-    }
-    tg.sendData(JSON.stringify(device))
+    // const device = {
+    //     name: info.name,
+    //     price: info.price,
+    //     memory: info.memory,
+    //     delivery: inputValue,
+    // }
+    // tg.sendData(JSON.stringify(device))
+    console.log(inputValue);
 }
 
   return (
@@ -44,6 +45,7 @@ export default function DrawerHandle({open, onClose, info}) {
           name="payment" 
           className={style.input}
           id={1} 
+          value="Самовывоз"
           type="radio"
           onInput={e => setInputValue(e.target.value)} 
           />
@@ -60,6 +62,7 @@ export default function DrawerHandle({open, onClose, info}) {
           name="payment" 
           className={style.input} 
           id={2} 
+          value="Доставка курьером"
           type="radio" 
           onInput={e => setInputValue(e.target.value)} 
           />
