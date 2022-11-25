@@ -52,3 +52,50 @@
 .props td {
     padding: 5px;
 }
+
+.image .sk__image {
+    width: 100% !important;
+    height: 385px;
+}
+
+.sk__name h3 {
+    display: none;
+}
+
+.sk__name li:nth-child(3) {
+    display: none;
+}
+
+.sk__props li {
+    display: none;
+}
+
+.sk__flex {
+    display: flex;
+    gap: 10px;
+}
+
+.sk__props {
+    width: 70%;
+}
+
+.sk__props:nth-child(1) {
+    width: 30%;
+}
+
+.sk__props h3 {
+    width: 100% !important;
+}
+
+.button {
+    padding: 10px 15px;
+    background-color: #0084ff;
+    border-radius: 3px;
+    color: white;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 100%;
+    justify-content: center;
+}

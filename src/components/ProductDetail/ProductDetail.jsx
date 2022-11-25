@@ -1,72 +1,68 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import axios from 'axios';
-import { Tabs } from 'antd';
+import { Radio, Skeleton, Space, Tabs } from 'antd';
 import style from './ProductDetail.module.css'
 import Button from '../Button/Button';
-import { useTelegram } from '../../hooks/useTelegram';
 import ProductItem from '../ProductItem/ProductItem';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import Header from '../Header/Header';
+import { useFetchOneDeviceQuery } from '../../redux/slices/deviceDetailService';
+import DrawerHandle from '../Drawer/DrawerHandle';
 
 export default function ProductDetail() {
     const {id} = useParams()
-    const [data, setData] = useState()
+    const [device, setDevice] = useState()
     const [similarDevices, setSimilarDevices] = useState()
     const [typeDevices, setTypeDevices] = useState()
-    const { tg } = useTelegram()
     const [memory, setMemory] = useState()
+    const { data, isLoading, error } = useFetchOneDeviceQuery({id})
+    const [open, setOpen] = useState(false)
 
-    useEffect(()=>{
-        axios.get(process.env.REACT_APP_BACKEND_URL + `/api/device/${id}`)
-        .then(res => {
-            setData(res.data.device);
-            setSimilarDevices(res.data.similarDevices)
-            setTypeDevices(res.data.typeDevices)
-            console.log(res.data);
-        })
-        
-    },[id])
+    useEffect(() => {
 
-    const sendData = (e) => {
-        console.log(tg);
-        // e.preventDefault()
-        // const device = {
-        //     name: data.name,
-        //     price: data.price,
-        //     color: color,
-        //     memory: memory
-        // }
+      if (data) {
+        setDevice(data.device);
+        setSimilarDevices(data.similarDevices)
+        setTypeDevices(data.typeDevices)
+      }
+    }, [data])
 
-        // tg.sendData(JSON.stringify(device))
-    }
+    const onClose = () => {
+      setOpen(false);
+    };
 
-  return data ? (
+    const showDrawer = (e) => {
+      e.preventDefault()
+      setOpen(true);
+    };
+
+  return  !isLoading ? (
     <>
-    <Header typeId={data.typeId} />
+    <Header typeId={data?.typeId} />
     <div className={style.product__detail}>
       <div className={style.image}>
       <Swiper
           slidesPerView={1}
         >
-          {data.sliderImg.map((slide) => (
-            <SwiperSlide>
+          {device?.sliderImg.map((slide, index) => (
+            <SwiperSlide key={index}>
                 <img style={{height: '385px', objectFit: 'contain'}} src={slide} />
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
       <form className={style.discription}>
-        <h1>{data.name}</h1>
-        <h2 className={style.price}>Цена: {data.price} руб.</h2>
+        <h1>{device?.name}</h1>
+        <h2 className={style.price}>Цена: {device?.price} руб.</h2>
 
         <div className={style.props}>
           <table>
             <tbody>
               <tr>
                 <th>Производитель:</th>
-                <td>{data.variations.Manufacturer}</td>
+                <td>{device?.variations.Manufacturer}</td>
               </tr>
               <tr>
                 <th>Гарантия:</th>
@@ -74,27 +70,27 @@ export default function ProductDetail() {
               </tr>
               <tr>
                 <th>Объем памяти:</th>
-                <td>{data.variations.memory}</td>
+                <td>{device?.variations.memory}</td>
               </tr>
               <tr>
                 <th>Параметры SIM:</th>
-                <td>{data.variations.sim}</td>
+                <td>{device?.variations.sim}</td>
               </tr>
               <tr>
                 <th>Комплектация:</th>
-                <td>{data.variations.set}</td>
+                <td>{device?.variations.set}</td>
               </tr>
             </tbody>
           </table>
         </div>
 
         <Button
-          onClick={(e) => sendData(e)}
-          style={{ display: "flex", margin: "20px 0", marginLeft: "auto" }}
+          onClick={e => showDrawer(e)}
+          style={{ display: "flex", margin: "20px 0", marginLeft: "auto"}}
+          className={style.button}
         >
           Купить
         </Button>
-
         <h2>Похожие товары</h2>
 
         <Swiper
@@ -102,12 +98,14 @@ export default function ProductDetail() {
           spaceBetween={10}
           slidesPerView={2}
         >
-          {similarDevices?.map((device) => (
-            <SwiperSlide>
-            <Link className={style.deviceSlide} to={`/device/${device.id}`}>
-              <ProductItem isAuth={false} key={device.id} element={device} />{" "}
+          {similarDevices?.map((similarDevice) => (
+            similarDevice.id !== device.id ? 
+            <SwiperSlide key={similarDevice.id}>
+            <Link className={style.deviceSlide} to={`/device/${similarDevice.id}`}>
+              <ProductItem isAuth={false} element={similarDevice} />{" "}
             </Link>
             </SwiperSlide>
+            : null
           ))}
         </Swiper>
 
@@ -118,22 +116,24 @@ export default function ProductDetail() {
           spaceBetween={10}
           slidesPerView={2}
         >
-          {typeDevices?.map((device) => (
-            <SwiperSlide>
-            <Link className={style.deviceSlide} to={`/device/${device.id}`}>
-              <ProductItem isAuth={false} key={device.id} element={device} />{" "}
-            </Link>
+          {typeDevices?.map((typeDevice) => (
+            typeDevice.id !== device.id ? 
+            <SwiperSlide key={typeDevice.id}>
+              <Link className={style.deviceSlide} to={`/device/${typeDevice.id}`}>
+                <ProductItem isAuth={false} element={typeDevice} />{" "}
+              </Link>
             </SwiperSlide>
+            : null
           ))}
         </Swiper>
 
         <div id="html" style={{marginTop: '20px'}}>
           <Tabs type="card">
-            {data.html.head.map((text, id) => (
+            {device?.html.head.map((text, id) => (
               <Tabs.TabPane tab={text} key={id}>
                 <div
                   style={{ padding: "10px" }}
-                  dangerouslySetInnerHTML={{ __html: data.html.body[id] }}
+                  dangerouslySetInnerHTML={{ __html: device?.html.body[id] }}
                 ></div>
               </Tabs.TabPane>
             ))}
@@ -141,6 +141,27 @@ export default function ProductDetail() {
         </div>
       </form>
     </div>
+    <DrawerHandle open={open} onClose={onClose} info={{name: device?.name, price: device?.price, memory: device?.variations.memory}} />
     </>
-  ) : null;
+  ) : 
+  <div className={style.product__detail}>
+  <div className={style.image}>
+    <Skeleton.Image className={style.sk__image} active={true} />
+  </div>
+  <div className={style.discription}>
+      <Skeleton className={style.sk__name} active={true} />
+
+        <div className={style.props}>
+          {
+            [...Array(5)].map((e, index) => 
+              <div key={index} className={style.sk__flex}>
+                <Skeleton className={style.sk__props} active={true} />
+                <Skeleton className={style.sk__props} active={true} />
+              </div>
+            )
+          }
+
+        </div>
+      </div>
+  </div>
 }

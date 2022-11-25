@@ -1,0 +1,43 @@
+.drawer .ant-drawer-header-title .ant-drawer-title {
+    order: 1;
+}
+
+.drawer .ant-drawer-header-title button {
+    order: 2;
+}
+
+.element {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin: 10px 0;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.element img {
+    width: 70px;
+    height: 70px;
+}
+
+.input {
+    display: none;
+}
+
+.input + label {
+    border: 1px solid transparent;
+}
+
+.input:checked + label {
+    border: 1px solid #0084ff;
+}
+
+.description h3 {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.description span {
+    color: rgba(0,0,0,.45);
+    font-size: 14px;
+}
