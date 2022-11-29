@@ -16,7 +16,6 @@ export default function ProductDetail() {
     const [device, setDevice] = useState()
     const [similarDevices, setSimilarDevices] = useState()
     const [typeDevices, setTypeDevices] = useState()
-    const [memory, setMemory] = useState()
     const { data, isLoading, error } = useFetchOneDeviceQuery({id})
     const [open, setOpen] = useState(false)
 

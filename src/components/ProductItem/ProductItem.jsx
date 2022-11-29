@@ -34,7 +34,9 @@ export default function ProductItem({element, isAuth}) {
   return element ? 
     <Link ref={ref} style={{width: 'calc(50% - 5px)', height: '100%'}} to={`/device/${element.id}`}>
       <div className={styles.product}>
-          <div className={styles.img}><img src={`${element.img}`} /></div>
+          <div className={styles.img}>
+            <img src={`${element.img}`} />
+          </div>
           <div className={styles.title}>{element.name}</div>
           <div className={styles.description}>{element.description}</div>
           <div className={styles.price}>

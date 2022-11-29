@@ -12,6 +12,7 @@ export default function Login() {
     const navigate = useNavigate()
 
     const submitData = async (event) => {
+        event.preventDefault()
         axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/user/login`, {
             "email": login,
             "password": password,

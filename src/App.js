@@ -32,6 +32,7 @@ function App() {
         <div>
           <Container>
             <Routes>
+            <Route path='/' element={<ProductList isAuth={isAuth} />} />
               <Route path='/:typeId' element={<ProductList isAuth={isAuth} />} />
               <Route path='form' element={<Form />} />
               <Route path="/device/:id" element={<ProductDetail />} />
