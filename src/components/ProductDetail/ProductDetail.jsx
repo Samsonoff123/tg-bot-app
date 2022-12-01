@@ -129,12 +129,14 @@ export default function ProductDetail() {
         <div id="html" style={{marginTop: '20px'}}>
           <Tabs type="card">
             {device?.html.head.map((text, id) => (
+              id !== 2 ? 
               <Tabs.TabPane tab={text} key={id}>
                 <div
                   style={{ padding: "10px" }}
                   dangerouslySetInnerHTML={{ __html: device?.html.body[id] }}
                 ></div>
               </Tabs.TabPane>
+              : null
             ))}
           </Tabs>
         </div>
