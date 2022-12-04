@@ -6,9 +6,11 @@ import pickup from '../../icons/pickup.png'
 import delivery from '../../icons/delivery.png'
 import Button from '../Button/Button'
 import { useTelegram } from '../../hooks/useTelegram';
+import { useRef } from 'react';
 
 export default function DrawerHandle({open, onClose, info}) {
   const [inputValue, setInputValue] = useState("Самовывоз")
+
   const { tg } = useTelegram()
 
   const sendData = (e) => {
@@ -41,37 +43,22 @@ export default function DrawerHandle({open, onClose, info}) {
   >
     <form onSubmit={e => {sendData(e)}}>
       <>
-        <input
-          checked={true} 
-          name="payment" 
-          className={style.input}
-          id={1} 
-          value="Самовывоз"
-          type="radio"
-          />
-          <label for={1} className={style.element} onClick={e => setInputValue("Самовывоз")}>
+          <div className={ (inputValue === 'Самовывоз') ? style.element + ' ' + style._active : style.element } onClick={e => setInputValue("Самовывоз")}>
             <img src={pickup} />
             <div className={style.description}>
                 <h3>Самовывоз</h3>
                 <span>Оплата при получений</span>
             </div>
-        </label>  
+        </div>  
       </>
       <>
-        <input
-          name="payment" 
-          className={style.input} 
-          id={2} 
-          value="Доставка курьером"
-          type="radio" 
-          />
-          <label for={2} className={style.element} onClick={e => setInputValue("Доставка курьером")}>
+          <div className={ (inputValue === 'Доставка курьером') ? style.element + ' ' + style._active : style.element } onClick={e => setInputValue("Доставка курьером")}>
             <img src={delivery} />
             <div className={style.description}>
                 <h3>Доставка курьером</h3>
                 <span>Оплата банковской картой</span>
             </div>
-        </label>  
+        </div>  
       </>
       <Button>Купить</Button>
     </form>
