@@ -30,7 +30,8 @@ export default function DrawerHandle({open, onClose, info}) {
     <Drawer
     title="Выберите способ оплаты и доставки"
     placement={"bottom"}
-    width={500}
+    width={800}
+    height={(inputValue === "Самовывоз") ? 650 : 350}
     onClose={onClose}
     open={open}
     closable={false}
@@ -60,6 +61,13 @@ export default function DrawerHandle({open, onClose, info}) {
             </div>
         </div>  
       </>
+      {
+        (inputValue === 'Самовывоз') ? 
+          <>
+            <iframe src="https://yandex.kz/map-widget/v1/-/CCUjF2C6lD" width="100%" height="300" allowfullscreen="true"></iframe>
+          </>
+        :null
+      }
       <Button>Купить</Button>
     </form>
   </Drawer>
