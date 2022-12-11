@@ -64,9 +64,11 @@ export default function DrawerHandle({open, onClose, info}) {
       {
         (inputValue === 'Самовывоз') ? 
           <>
-            <iframe src="https://yandex.kz/map-widget/v1/-/CCUjF2C6lD" width="100%" height="300" allowfullscreen="true"></iframe>
+            <iframe src="https://yandex.kz/map-widget/v1/-/CCUnMOaNtA" width="100%" height="300" allowfullscreen="true"></iframe>
           </>
         :null
+
+        
       }
       <Button>Купить</Button>
     </form>

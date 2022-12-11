@@ -55,6 +55,7 @@
     max-height: 70px;
     overflow: hidden;
     vertical-align: middle;
+    width: 100%;
 }
 
 .price {

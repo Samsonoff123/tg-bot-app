@@ -37,7 +37,7 @@ export default function ProductItem({element, isAuth}) {
           <div className={styles.img}>
             <img src={`${element.img}`} />
           </div>
-          <div className={styles.title}>{element.name}</div>
+          <div className={styles.title}>{element.name.replace(/&quot;/g,'"').replace(/\//g, ' / ')}</div>
           <div className={styles.description}>{element.description}</div>
           <div className={styles.price}>
               <span>Стоимость: <b>{element.price}</b> руб.</span>

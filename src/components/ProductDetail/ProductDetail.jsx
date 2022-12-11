@@ -10,6 +10,7 @@ import 'swiper/css';
 import Header from '../Header/Header';
 import { useFetchOneDeviceQuery } from '../../redux/slices/deviceDetailService';
 import DrawerHandle from '../Drawer/DrawerHandle';
+import Table from '../DetailTable/Table'
 
 export default function ProductDetail() {
     const {id} = useParams()
@@ -57,30 +58,7 @@ export default function ProductDetail() {
         <h2 className={style.price}>Цена: {device?.price} руб.</h2>
 
         <div className={style.props}>
-          <table>
-            <tbody>
-              <tr>
-                <th>Производитель:</th>
-                <td>{device?.variations.Manufacturer}</td>
-              </tr>
-              <tr>
-                <th>Гарантия:</th>
-                <td>12 месяцев</td>
-              </tr>
-              <tr>
-                <th>Объем памяти:</th>
-                <td>{device?.variations.memory}</td>
-              </tr>
-              <tr>
-                <th>Параметры SIM:</th>
-                <td>{device?.variations.sim}</td>
-              </tr>
-              <tr>
-                <th>Комплектация:</th>
-                <td>{device?.variations.set}</td>
-              </tr>
-            </tbody>
-          </table>
+            <Table device={device} />
         </div>
 
         <Button
