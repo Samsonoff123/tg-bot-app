@@ -120,7 +120,7 @@ export default function ProductDetail() {
         </div>
       </form>
     </div>
-    <DrawerHandle open={open} onClose={onClose} info={{name: device?.name, price: device?.price, memory: device?.variations.memory}} />
+    <DrawerHandle open={open} onClose={onClose} info={{name: device?.name, price: device?.price}} />
     </>
   ) : 
   <div className={style.product__detail}>

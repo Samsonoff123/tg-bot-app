@@ -18,7 +18,6 @@ export default function DrawerHandle({open, onClose, info}) {
     const device = {
         name: info.name,
         price: info.price,
-        memory: info.memory,
         delivery: inputValue,
     }
     tg.sendData(JSON.stringify(device))
