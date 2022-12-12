@@ -58,7 +58,7 @@ export default function ProductDetail() {
         <h2 className={style.price}>Цена: {device?.price} руб.</h2>
 
         <div className={style.props}>
-            <Table device={device} />
+            <Table variations={device?.variations} />
         </div>
 
         <Button
