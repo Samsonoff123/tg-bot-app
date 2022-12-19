@@ -115,7 +115,7 @@ export default function ProductDetail() {
                 ></div>
               </Tabs.TabPane>
               : null
-            ))}
+            ))}  
           </Tabs>
         </div>
       </form>
