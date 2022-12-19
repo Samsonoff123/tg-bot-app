@@ -113,11 +113,11 @@ export default function ProductDetail() {
                   style={{ padding: "10px" }}
                   dangerouslySetInnerHTML={{ __html: device?.html.body[id] }}
                 ></div>
-              </Tabs.TabPane>
+              </Tabs.TabPane> 
               : null
             ))}  
-          </Tabs>
-        </div>
+          </Tabs> 
+        </div> 
       </form>
     </div>
     <DrawerHandle open={open} onClose={onClose} info={{name: device?.name, price: device?.price}} />
