@@ -1,4 +1,4 @@
-import { Skeleton } from 'antd'
+import { Select, Skeleton } from 'antd'
 import axios from 'axios'
 import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
@@ -31,7 +31,7 @@ export default function ProductList({isAuth}) {
 
   useEffect(() => {
     if (page > 1) {
-      axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/device/type/${type}?limit=10&page=${page}`)
+      axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/device/type/${type}/hightToLow?limit=10&page=${page}`)
       .then((res) => {
         setDevice([...device, ...res.data.rows])
       })

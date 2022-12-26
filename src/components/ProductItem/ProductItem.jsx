@@ -31,6 +31,18 @@ export default function ProductItem({element, isAuth}) {
     })
   }
 
+  const getTruePrice = (price = 0) => {
+    let data = JSON.stringify(price)
+    if (data.split('').length <= 4) {
+      return data.replace(/(.{4})(.)/g,'$1 $2')
+    } else if (data.split('').length === 5) {
+      return data.replace(/(.{2})(.)/g,'$1 $2')
+    } else {
+      return data.replace(/(.{3})(.)/g,'$1 $2')
+    }
+      
+  }
+
   return element ? 
     <Link ref={ref} style={{width: 'calc(50% - 5px)', height: '100%'}} to={`/device/${element.id}`}>
       <div className={styles.product}>
@@ -40,7 +52,7 @@ export default function ProductItem({element, isAuth}) {
           <div className={styles.title}>{element.name.replace(/&quot;/g,'"').replace(/\//g, ' / ')}</div>
           <div className={styles.description}>{element.description}</div>
           <div className={styles.price}>
-              <span>Стоимость: <b>{element.price}</b> руб.</span>
+              <span>Стоимость: <b>{ getTruePrice(element?.price) }</b> руб.</span>
           </div>
           {
             isAuth ?
