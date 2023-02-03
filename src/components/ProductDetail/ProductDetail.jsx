@@ -55,7 +55,7 @@ export default function ProductDetail() {
       </div>
       <form className={style.discription}>
         <h1>{device?.name}</h1>
-        <h2 className={style.price}>Цена: { device?.price.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') } руб.</h2>
+        <h2 className={style.price}>Цена: { device?.price + "".replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') } руб.</h2>
 
         <div className={style.props}>
             <Table variations={device?.variations} />

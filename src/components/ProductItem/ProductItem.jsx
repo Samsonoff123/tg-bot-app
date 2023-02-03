@@ -40,7 +40,7 @@ export default function ProductItem({element, isAuth}) {
           <div className={styles.title}>{element.name.replace(/&quot;/g,'"').replace(/\//g, ' / ')}</div>
           <div className={styles.description}>{element.description}</div>
           <div className={styles.price}>
-              <span>Стоимость: <b>{ element?.price.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') }</b> руб.</span>
+              <span>Стоимость: <b>{ element?.price + "".replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') }</b> руб.</span>
           </div>
           {
             isAuth ?
