@@ -99,3 +99,33 @@
     width: 100%;
     justify-content: center;
 }
+
+.element span {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.element .active {
+    border: 1px solid red;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.element div {
+    display: flex;
+    gap: 5px;
+    overflow-y: scroll;
+}
+
+.element input {
+    display: none;
+}
+
+.element label {
+    display: block;
+    width: 40px;
+    height: 55px;
+    background-size: contain !important;
+}

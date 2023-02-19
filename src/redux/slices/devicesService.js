@@ -5,10 +5,9 @@ export const deviceAPI = createApi({
     baseQuery: fetchBaseQuery({baseUrl: process.env.REACT_APP_BACKEND_URL}, ),
     endpoints: (build) => ({
         fetchAllDevices: build.query({
-            query: ({type}) => (
-                console.log(type),
+            query: ({type, sort}) => (
                 {
-                url: `/api/device/type/${type}?limit=10&page=1`
+                url: `/api/device/type/${type}/${sort}?limit=10&page=1`
             })
         })
     })

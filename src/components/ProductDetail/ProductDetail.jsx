@@ -19,6 +19,7 @@ export default function ProductDetail() {
     const [typeDevices, setTypeDevices] = useState()
     const { data, isLoading, error } = useFetchOneDeviceQuery({id})
     const [open, setOpen] = useState(false)
+    const [memoryArr, setMemoryArr] = useState([])
 
     useEffect(() => {
 
@@ -38,7 +39,26 @@ export default function ProductDetail() {
       setOpen(true);
     };
 
-  return  !isLoading ? (
+    useEffect(() => {
+      const numbers = []
+      similarDevices?.map(devs => {
+        if (devs.variations.head.includes("Объем памяти")) {
+          devs.variations.body.map(body => {
+            if (body.includes("GB")) {
+              numbers.push({body, id: devs.id, img: devs.img})
+            }
+          })
+        }
+      })
+        
+      const current = numbers.filter((n, i) => n.body !== numbers[i - 1]?.body)
+
+      setMemoryArr(current)
+      
+    }, [similarDevices])
+
+
+  return  (!isLoading && !error) ? (
     <>
     <Header typeId={data?.typeId} />
     <div className={style.product__detail}>
@@ -58,6 +78,31 @@ export default function ProductDetail() {
         <h2 className={style.price}>Цена: { (device?.price || 0).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ') } руб.</h2>
 
         <div className={style.props}>
+            <div className={style.element}>
+              <span>Цвет:</span>
+              <div>
+                {
+                  memoryArr?.map(simmilars => 
+                    <Link key={simmilars.id} to={`/device/${simmilars.id}`} className={ (simmilars.id === device.id) && style.active }>
+                      <input id={simmilars.id} type="radio" />
+                      <label for={simmilars.id} style={{background: `url("${simmilars.img}")50% 50% no-repeat`}}></label>
+                    </Link>
+                  )
+                }
+              </div>
+            </div>
+
+            <div className={style.element}>
+              <span>Объем памяти:</span>
+              <div>
+                {
+                  memoryArr.map(e => 
+                    <Link to={`/device/${e.id}`}>{e.body}</Link>  
+                  )
+                }
+              </div>
+            </div>
+
             <Table variations={device?.variations} />
         </div>
 

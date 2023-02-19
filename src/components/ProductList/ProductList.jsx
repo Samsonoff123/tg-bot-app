@@ -17,9 +17,10 @@ export default function ProductList({isAuth}) {
   const [device, setDevice] = useState([]) 
   const [limit, setLimit] = useState(10)
   const [page, setPage] = useState(1);
+  const [sort, setSort] = useState('hightToLow')
   const [totalPages, setTotalPages] = useState(10)
   const { typeId: type } = useParams()
-  const { data, isLoading, error } = useFetchAllDevicesQuery({type})
+  const { data, isLoading, error } = useFetchAllDevicesQuery({type, sort})
 
   useEffect(() => {
     if (data) {
@@ -31,13 +32,12 @@ export default function ProductList({isAuth}) {
 
   useEffect(() => {
     if (page > 1) {
-      axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/device/type/${type}/hightToLow?limit=10&page=${page}`)
+      axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/device/type/${type}/${sort}?limit=10&page=${page}`)
       .then((res) => {
         setDevice([...device, ...res.data.rows])
       })
     }
   }, [page])
-
 
   const { ref, inView, entry } = useInView({
     /* Optional options */
@@ -49,6 +49,10 @@ export default function ProductList({isAuth}) {
       setPage(page + 1)
     }
   }, [inView])
+
+  const handleChange = (value) => {
+    setSort(value)
+  }
 
 
   if (isLoading) {
@@ -73,6 +77,15 @@ export default function ProductList({isAuth}) {
   return (
     <>
       <Header typeId={type} />
+      <Select
+          defaultValue="Сначала дорогие"
+          style={{ width: '100%', marginTop: 20}}
+          onChange={handleChange}
+          options={[
+            { value: 'hightToLow', label: 'Сначала дорогие' },
+            { value: 'lowToHight', label: 'Сначала дешевые' },
+          ]}
+        />
       {
         !isLoading ?
         <div className={styles.list}>

@@ -5,8 +5,7 @@ export const deviceDetailAPI = createApi({
     baseQuery: fetchBaseQuery({baseUrl: process.env.REACT_APP_BACKEND_URL}, ),
     endpoints: (build) => ({
         fetchOneDevice: build.query({
-            query: ({id}) => (
-                {
+            query: ({id}) => ({
                 url: `/api/device/${id}`
             })
         })
