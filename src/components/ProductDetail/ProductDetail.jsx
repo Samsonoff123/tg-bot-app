@@ -97,7 +97,7 @@ export default function ProductDetail() {
               <div>
                 {
                   memoryArr.map(e => 
-                    <Link to={`/device/${e.id}`}>{e.body}</Link>  
+                    <Link className={ (simmilars.id === device.id) && style.active } to={`/device/${e.id}`}>{e.body}</Link>  
                   )
                 }
               </div>
